@@ -26,8 +26,6 @@
         {% for restaurant in restaurants %}
             <p>{{ restaurant[0] }}</p>
         {% endfor %}
-        <p>Restaurant name</p><br>
-        <p>Ratings</p>
         <div class="map-box">
             </div>
     </div>
@@ -35,7 +33,7 @@
         <p>This is where the banner would be present</p>
     </section>
       <aside class="filter-sidebar">
-        <h3>FILTERS:</h3>
+        <h3><b>FILTERS:</b></h3>
         <hr>
     <div id="filters-container">
         <form id="filters-form" style="display:inline;">
@@ -46,11 +44,13 @@
         </form>
     </div>
     <hr>
-        <p>Price</p>
-        <input type="text" placeholder="Min $">
-        <input type="text" placeholder="Max $">
+        <h3><b>Price</b></h3>
+        <input type="number" id="min-price" placeholder="Min $" min="0">
+        <input type="number" id="max-price" placeholder="Max $" min="0">
         <button class="apply-btn">Apply</button>
     </aside>
+
+
 
 
 
@@ -62,13 +62,17 @@
         const checkboxes = document.querySelectorAll('#filters-form input[name="filter"]:checked');
         const filters = Array.from(checkboxes).map(cb => cb.value);
         
+        // Get price range
+        const minPrice = document.querySelector('#min-price').value;
+        const maxPrice = document.querySelector('#max-price').value;
+        
         // Send AJAX request
         fetch('/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ filters: filters })
+            body: JSON.stringify({ filters: filters, minPrice: minPrice, maxPrice: maxPrice })
         })
         .then(response => response.json())
         .then(data => {
@@ -92,4 +96,3 @@
 </div>
   </body>
 </html>
-   
