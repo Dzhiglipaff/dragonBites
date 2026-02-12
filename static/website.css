@@ -39,12 +39,12 @@ nav ul {
   padding: 0;
   display: flex; /* Makes navigation bar horizontal */
   justify-content: center; /* Centers the links */
-  background-color:  bisque;
+  background-color: #192841;
   border-radius: 10px;
   overflow: hidden;
 }
 nav li {
-  border-right: 1px solid #555;
+  padding: 10px;
 }
 
 nav li:last-child {
